@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antichess</title>
+    <script type="module" crossorigin src="/antichess/assets/index-ByQI69ru.js"></script>
+    <link rel="stylesheet" crossorigin href="/antichess/assets/index-DhN53OTR.css">
+  </head>
+  <body>
+    <main class="app">
+      <h1>Antichess</h1>
+      <p class="tagline">Lose all your pieces to win. If you can capture, you must.</p>
+      <p id="game-info" class="game-info"></p>
+      <p id="status" class="status" role="status"></p>
+      <div class="game-area">
+        <div class="board-wrap">
+          <div id="board" class="board" aria-label="Chessboard"></div>
+          <div id="promotion" class="overlay" hidden>
+            <div class="card">
+              <h2>Promote your pawn to:</h2>
+              <div id="promotion-choices" class="promotion-choices"></div>
+              <button id="promotion-cancel" class="text-button">Cancel</button>
+            </div>
+          </div>
+          <div id="setup" class="overlay">
+            <form id="setup-form" class="card setup-card">
+              <h2>New game</h2>
+              <fieldset>
+                <legend>Players</legend>
+                <div class="choice-group">
+                  <label class="choice">
+                    <input type="radio" name="mode" value="computer" checked />
+                    <span>1 player<small>Against the computer</small></span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="mode" value="two-player" />
+                    <span>2 players<small>Take turns on this screen</small></span>
+                  </label>
+                </div>
+              </fieldset>
+              <div id="computer-options" class="computer-options">
+                <fieldset>
+                  <legend>Play as</legend>
+                  <div class="choice-group">
+                    <label class="choice">
+                      <input type="radio" name="side" value="w" checked />
+                      <span>White</span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="side" value="b" />
+                      <span>Black</span>
+                    </label>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <legend>Difficulty</legend>
+                  <div class="choice-group">
+                    <label class="choice">
+                      <input type="radio" name="difficulty" value="easy" />
+                      <span>Easy<small>Moves at random</small></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="difficulty" value="normal" checked />
+                      <span>Normal<small>Sees its move and your reply</small></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="difficulty" value="hard" />
+                      <span>Hard<small>Looks 2 full moves ahead</small></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="difficulty" value="expert" />
+                      <span>Expert<small>Thinks up to 10 seconds</small></span>
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+              <button type="submit" class="primary-button">Start</button>
+              <button type="button" id="setup-cancel" class="text-button" hidden>Back to current game</button>
+            </form>
+          </div>
+          <div id="resign-confirm" class="overlay" hidden>
+            <div class="card">
+              <h2 id="resign-question">Resign?</h2>
+              <p id="resign-consequence"></p>
+              <div class="dialog-actions">
+                <button id="resign-yes" class="primary-button">Yes, resign</button>
+                <button id="resign-no" class="secondary-button">Keep playing</button>
+              </div>
+            </div>
+          </div>
+          <div id="result" class="overlay" hidden>
+            <div class="card">
+              <h2 id="result-title" class="result-title"></h2>
+              <p id="result-detail"></p>
+              <button id="play-again" class="primary-button">Play again</button>
+            </div>
+          </div>
+        </div>
+        <section class="move-log" aria-labelledby="move-log-title">
+          <h2 id="move-log-title">Moves</h2>
+          <p id="move-log-empty" class="move-log-empty">No moves yet.</p>
+          <ol id="move-list" class="move-list"></ol>
+        </section>
+      </div>
+      <div class="game-actions">
+        <button id="new-game" class="primary-button">New game</button>
+        <button id="resign" class="secondary-button" hidden>Resign</button>
+      </div>
+    </main>
+  </body>
+</html>
