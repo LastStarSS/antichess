@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Antichess</title>
-    <script type="module" crossorigin src="/antichess/assets/index-ByQI69ru.js"></script>
-    <link rel="stylesheet" crossorigin href="/antichess/assets/index-DhN53OTR.css">
+    <script type="module" crossorigin src="/antichess/assets/index-DYUWntAj.js"></script>
+    <link rel="stylesheet" crossorigin href="/antichess/assets/index-DdCE8IwZ.css">
   </head>
   <body>
     <main class="app">
@@ -28,56 +28,82 @@
               <h2>New game</h2>
               <fieldset>
                 <legend>Players</legend>
-                <div class="choice-group">
+                <div class="choice-group three-choices">
                   <label class="choice">
                     <input type="radio" name="mode" value="computer" checked />
                     <span>1 player<small>Against the computer</small></span>
                   </label>
                   <label class="choice">
                     <input type="radio" name="mode" value="two-player" />
-                    <span>2 players<small>Take turns on this screen</small></span>
+                    <span>2 players<small>On this screen</small></span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="mode" value="online" />
+                    <span>Online<small>With a friend</small></span>
                   </label>
                 </div>
               </fieldset>
-              <div id="computer-options" class="computer-options">
-                <fieldset>
-                  <legend>Play as</legend>
-                  <div class="choice-group">
-                    <label class="choice">
-                      <input type="radio" name="side" value="w" checked />
-                      <span>White</span>
-                    </label>
-                    <label class="choice">
-                      <input type="radio" name="side" value="b" />
-                      <span>Black</span>
-                    </label>
-                  </div>
-                </fieldset>
-                <fieldset>
-                  <legend>Difficulty</legend>
-                  <div class="choice-group">
-                    <label class="choice">
-                      <input type="radio" name="difficulty" value="easy" />
-                      <span>Easy<small>Moves at random</small></span>
-                    </label>
-                    <label class="choice">
-                      <input type="radio" name="difficulty" value="normal" checked />
-                      <span>Normal<small>Sees its move and your reply</small></span>
-                    </label>
-                    <label class="choice">
-                      <input type="radio" name="difficulty" value="hard" />
-                      <span>Hard<small>Looks 2 full moves ahead</small></span>
-                    </label>
-                    <label class="choice">
-                      <input type="radio" name="difficulty" value="expert" />
-                      <span>Expert<small>Thinks up to 10 seconds</small></span>
-                    </label>
-                  </div>
-                </fieldset>
+              <fieldset id="side-options">
+                <legend>Play as</legend>
+                <div class="choice-group three-choices">
+                  <label class="choice">
+                    <input type="radio" name="side" value="w" checked />
+                    <span>White</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="side" value="b" />
+                    <span>Black</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="side" value="random" />
+                    <span>Random</span>
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset id="difficulty-options">
+                <legend>Difficulty</legend>
+                <div class="choice-group">
+                  <label class="choice">
+                    <input type="radio" name="difficulty" value="easy" />
+                    <span>Easy<small>Moves at random</small></span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="difficulty" value="normal" checked />
+                    <span>Normal<small>Sees its move and your reply</small></span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="difficulty" value="hard" />
+                    <span>Hard<small>Looks 2 full moves ahead</small></span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="difficulty" value="expert" />
+                    <span>Expert<small>Thinks up to 10 seconds</small></span>
+                  </label>
+                </div>
+              </fieldset>
+              <p id="online-error" class="form-error" role="alert" hidden></p>
+              <button type="submit" id="start-button" class="primary-button">Start</button>
+              <div id="join-options" class="join-options" hidden>
+                <label for="join-code">Have a code from a friend?</label>
+                <div class="join-row">
+                  <input id="join-code" class="code-input" maxlength="7" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="K7QX2" />
+                  <button type="button" id="join-button" class="secondary-button">Join</button>
+                </div>
               </div>
-              <button type="submit" class="primary-button">Start</button>
               <button type="button" id="setup-cancel" class="text-button" hidden>Back to current game</button>
             </form>
+          </div>
+          <div id="waiting" class="overlay" hidden>
+            <div class="card waiting-card">
+              <h2>Waiting for your friend</h2>
+              <p>Send them this link to join:</p>
+              <div class="join-row">
+                <input id="share-link" class="share-link" readonly aria-label="Link to this game" />
+                <button id="copy-link" class="primary-button">Copy</button>
+              </div>
+              <p>Or they can choose <strong>Online</strong> and enter the code <strong id="share-code" class="game-code"></strong></p>
+              <button id="cancel-online" class="text-button">Cancel</button>
+            </div>
           </div>
           <div id="resign-confirm" class="overlay" hidden>
             <div class="card">
