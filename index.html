@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Antichess</title>
-    <script type="module" crossorigin src="/antichess/assets/index-BbBZH_HQ.js"></script>
+    <script type="module" crossorigin src="/antichess/assets/index-DKXwzZhL.js"></script>
     <link rel="stylesheet" crossorigin href="/antichess/assets/index-DdCE8IwZ.css">
   </head>
   <body>
@@ -113,6 +113,13 @@
               <button id="cancel-online" class="text-button">Cancel</button>
             </div>
           </div>
+          <div id="opponent-left" class="overlay" hidden>
+            <div class="card">
+              <h2>Your opponent left</h2>
+              <p>They closed the game or lost connection. Waiting for them to come back…</p>
+              <button id="claim-win" class="primary-button">End game and claim the win</button>
+            </div>
+          </div>
           <div id="resign-confirm" class="overlay" hidden>
             <div class="card">
               <h2 id="resign-question">Resign?</h2>
@@ -141,6 +148,6 @@
         <button id="new-game" class="primary-button">New game</button>
         <button id="resign" class="secondary-button" hidden>Resign</button>
       </div>
-    </main>
+    </main>
   </body>
 </html>
