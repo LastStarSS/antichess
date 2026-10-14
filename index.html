@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Antichess</title>
-    <script type="module" crossorigin src="/antichess/assets/index-DYUWntAj.js"></script>
+    <script type="module" crossorigin src="/antichess/assets/index-BbBZH_HQ.js"></script>
     <link rel="stylesheet" crossorigin href="/antichess/assets/index-DdCE8IwZ.css">
   </head>
   <body>
@@ -79,6 +79,14 @@
                     <input type="radio" name="difficulty" value="expert" />
                     <span>Expert<small>Thinks up to 10 seconds</small></span>
                   </label>
+                  <label class="choice">
+                    <input type="radio" name="difficulty" value="ai" />
+                    <span>AI<small>Trained on strong players' games</small></span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="difficulty" value="ai-plus" />
+                    <span>AI+<small>AI that checks for traps</small></span>
+                  </label>
                 </div>
               </fieldset>
               <p id="online-error" class="form-error" role="alert" hidden></p>
@@ -133,6 +141,6 @@
         <button id="new-game" class="primary-button">New game</button>
         <button id="resign" class="secondary-button" hidden>Resign</button>
       </div>
-    </main>
+    </main>
   </body>
 </html>
