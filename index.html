@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Antichess</title>
-    <script type="module" crossorigin src="/antichess/assets/index-BPbUZd8l.js"></script>
-    <link rel="stylesheet" crossorigin href="/antichess/assets/index-Bg0Hz7M4.css">
+    <script type="module" crossorigin src="/antichess/assets/index-60ciVSB2.js"></script>
+    <link rel="stylesheet" crossorigin href="/antichess/assets/index-Dq_R1OqB.css">
   </head>
   <body>
     <main class="app">
@@ -16,6 +16,7 @@
       <div class="game-area">
         <div class="board-wrap">
           <div id="board" class="board" aria-label="Chessboard"></div>
+          <p id="move-hint" class="move-hint" role="alert" hidden></p>
           <div id="promotion" class="overlay" hidden>
             <div class="card">
               <h2>Promote your pawn to:</h2>
@@ -99,6 +100,7 @@
                 </div>
               </div>
               <button type="button" id="setup-cancel" class="text-button" hidden>Back to current game</button>
+              <button type="button" class="text-button show-rules">How to play</button>
             </form>
           </div>
           <div id="waiting" class="overlay" hidden>
@@ -138,7 +140,10 @@
                 <p id="rematch-message"></p>
                 <div id="rematch-actions" class="dialog-actions"></div>
               </div>
-              <button id="play-again" class="primary-button">Play again</button>
+              <div class="dialog-actions">
+                <button id="review-game" class="secondary-button">Review game</button>
+                <button id="play-again" class="primary-button">Play again</button>
+              </div>
             </div>
           </div>
         </div>
@@ -148,10 +153,41 @@
           <ol id="move-list" class="move-list"></ol>
         </section>
       </div>
+      <div id="review-bar" class="review-bar" hidden>
+        <div class="review-nav">
+          <button id="review-start" class="secondary-button" aria-label="First position">«</button>
+          <button id="review-back" class="secondary-button" aria-label="Previous move">‹</button>
+          <span id="review-position" class="review-position"></span>
+          <button id="review-forward" class="secondary-button" aria-label="Next move">›</button>
+          <button id="review-end" class="secondary-button" aria-label="Last position">»</button>
+        </div>
+        <div class="review-actions">
+          <button id="copy-pgn" class="secondary-button">Copy PGN</button>
+          <button id="open-lichess" class="secondary-button">Open in Lichess</button>
+          <button id="close-review" class="text-button">Back to result</button>
+        </div>
+        <p id="review-message" class="review-message" role="status"></p>
+        <textarea id="review-pgn" class="review-pgn" readonly hidden aria-label="Game in PGN"></textarea>
+      </div>
       <div class="game-actions">
         <button id="new-game" class="primary-button">New game</button>
+        <button class="secondary-button show-rules">Rules</button>
         <button id="resign" class="secondary-button" hidden>Resign</button>
       </div>
     </main>
+    <div id="rules" class="modal" role="dialog" aria-modal="true" aria-labelledby="rules-title" hidden>
+      <div class="card rules-card">
+        <h2 id="rules-title">How to play Antichess</h2>
+        <ol class="rules-list">
+          <li><strong>Lose to win.</strong> Get rid of all your pieces, or get stuck with no legal moves, and you win.</li>
+          <li><strong>Captures are forced.</strong> If you can capture, you must. If several captures are possible, you choose which. The pieces you can take are shown in red.</li>
+          <li><strong>The king is just a piece.</strong> There's no check or checkmate, kings can be captured, and there's no castling.</li>
+          <li><strong>Pawns can promote to a king,</strong> as well as a queen, rook, bishop or knight.</li>
+        </ol>
+        <p class="rules-tip"><strong>Tip:</strong> give your pieces away by moving them where your opponent will be forced to take them.</p>
+        <p class="rules-draws">A game is drawn after 50 moves each with no capture or pawn move, when the same position comes up 3 times, or when only bishops are left that can never meet.</p>
+        <button id="rules-close" class="primary-button">Got it</button>
+      </div>
+    </div>
   </body>
 </html>
