@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Antichess</title>
-    <script type="module" crossorigin src="/antichess/assets/index-60ciVSB2.js"></script>
-    <link rel="stylesheet" crossorigin href="/antichess/assets/index-Dq_R1OqB.css">
+    <script type="module" crossorigin src="/antichess/assets/index-ia8u8TDL.js"></script>
+    <link rel="stylesheet" crossorigin href="/antichess/assets/index-COdKidj4.css">
   </head>
   <body>
     <main class="app">
@@ -16,7 +16,15 @@
       <div class="game-area">
         <div class="board-wrap">
           <div id="board" class="board" aria-label="Chessboard"></div>
+          <svg id="hint-arrows" class="hint-arrows" viewBox="0 0 8 8" aria-hidden="true"></svg>
           <p id="move-hint" class="move-hint" role="alert" hidden></p>
+          <div id="hint-notice" class="overlay" hidden>
+            <div class="card">
+              <h2>Game settings</h2>
+              <p id="hint-notice-text"></p>
+              <button id="hint-notice-ok" class="primary-button">OK</button>
+            </div>
+          </div>
           <div id="promotion" class="overlay" hidden>
             <div class="card">
               <h2>Promote your pawn to:</h2>
@@ -24,7 +32,7 @@
               <button id="promotion-cancel" class="text-button">Cancel</button>
             </div>
           </div>
-          <div id="setup" class="overlay">
+          <div id="setup" class="modal setup-modal">
             <form id="setup-form" class="card setup-card">
               <h2>New game</h2>
               <fieldset>
@@ -87,6 +95,44 @@
                   <label class="choice">
                     <input type="radio" name="difficulty" value="ai-plus" />
                     <span>AI+<small>AI that checks for traps</small></span>
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset id="hint-who-options" hidden>
+                <legend>Who gets AI hints</legend>
+                <div class="choice-group">
+                  <label class="choice">
+                    <input type="radio" name="hint-who" value="nobody" checked />
+                    <span>Nobody</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="hint-who" value="me" />
+                    <span>Only me</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="hint-who" value="opponent" />
+                    <span>Only my opponent</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="hint-who" value="both" />
+                    <span>Both of us</span>
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset id="hint-count-options">
+                <legend>AI hints</legend>
+                <div class="choice-group three-choices">
+                  <label class="choice" id="hint-off-choice">
+                    <input type="radio" name="hint-count" value="0" checked />
+                    <span>Off</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="hint-count" value="3" />
+                    <span>3 per game</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="hint-count" value="unlimited" />
+                    <span>Unlimited</span>
                   </label>
                 </div>
               </fieldset>
@@ -171,6 +217,7 @@
       </div>
       <div class="game-actions">
         <button id="new-game" class="primary-button">New game</button>
+        <button id="hint-button" class="secondary-button" hidden>Hint</button>
         <button class="secondary-button show-rules">Rules</button>
         <button id="resign" class="secondary-button" hidden>Resign</button>
       </div>
