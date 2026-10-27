@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Antichess</title>
-    <script type="module" crossorigin src="/antichess/assets/index-BmR7BAI3.js"></script>
-    <link rel="stylesheet" crossorigin href="/antichess/assets/index-COdKidj4.css">
+    <script type="module" crossorigin src="/antichess/assets/index-CyxTZK8t.js"></script>
+    <link rel="stylesheet" crossorigin href="/antichess/assets/index-D8CSux5C.css">
   </head>
   <body>
     <main class="app">
@@ -14,189 +14,229 @@
       <p id="game-info" class="game-info"></p>
       <p id="status" class="status" role="status"></p>
       <div class="game-area">
-        <div class="board-wrap">
-          <div id="board" class="board" aria-label="Chessboard"></div>
-          <svg id="hint-arrows" class="hint-arrows" viewBox="0 0 8 8" aria-hidden="true"></svg>
-          <p id="move-hint" class="move-hint" role="alert" hidden></p>
-          <div id="hint-notice" class="overlay" hidden>
-            <div class="card">
-              <h2>Game settings</h2>
-              <p id="hint-notice-text"></p>
-              <button id="hint-notice-ok" class="primary-button">OK</button>
+        <div class="board-column">
+          <p id="player-top" class="player-bar" hidden></p>
+          <div class="board-wrap">
+            <div id="board" class="board" aria-label="Chessboard"></div>
+            <svg id="hint-arrows" class="hint-arrows" viewBox="0 0 8 8" aria-hidden="true"></svg>
+            <p id="move-hint" class="move-hint" role="alert" hidden></p>
+            <div id="puzzle-card" class="overlay puzzle-overlay" hidden>
+              <div class="card">
+                <h2 id="puzzle-card-title"></h2>
+                <p id="puzzle-card-text"></p>
+                <div id="puzzle-card-actions" class="dialog-actions"></div>
+              </div>
             </div>
-          </div>
-          <div id="promotion" class="overlay" hidden>
-            <div class="card">
-              <h2>Promote your pawn to:</h2>
-              <div id="promotion-choices" class="promotion-choices"></div>
-              <button id="promotion-cancel" class="text-button">Cancel</button>
+            <div id="hint-notice" class="overlay" hidden>
+              <div class="card">
+                <h2>Game settings</h2>
+                <p id="hint-notice-text"></p>
+                <button id="hint-notice-ok" class="primary-button">OK</button>
+              </div>
             </div>
-          </div>
-          <div id="setup" class="modal setup-modal">
-            <form id="setup-form" class="card setup-card">
-              <h2>New game</h2>
-              <fieldset>
-                <legend>Players</legend>
-                <div class="choice-group three-choices">
-                  <label class="choice">
-                    <input type="radio" name="mode" value="computer" checked />
-                    <span>1 player<small>Against the computer</small></span>
-                  </label>
-                  <label class="choice">
-                    <input type="radio" name="mode" value="two-player" />
-                    <span>2 players<small>On this screen</small></span>
-                  </label>
-                  <label class="choice">
-                    <input type="radio" name="mode" value="online" />
-                    <span>Online<small>With a friend</small></span>
-                  </label>
+            <div id="promotion" class="overlay" hidden>
+              <div class="card">
+                <h2>Promote your pawn to:</h2>
+                <div id="promotion-choices" class="promotion-choices"></div>
+                <button id="promotion-cancel" class="text-button">Cancel</button>
+              </div>
+            </div>
+            <div id="setup" class="modal setup-modal">
+              <form id="setup-form" class="card setup-card">
+                <h2>New game</h2>
+                <fieldset>
+                  <legend>Players</legend>
+                  <div class="choice-group">
+                    <label class="choice">
+                      <input type="radio" name="mode" value="computer" checked />
+                      <span>1 player<small>Against the computer</small></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="mode" value="two-player" />
+                      <span>2 players<small>On this screen</small></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="mode" value="online" />
+                      <span>Online<small>With a friend</small></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="mode" value="puzzle" />
+                      <span>Puzzles<small>Find the winning moves</small></span>
+                    </label>
+                  </div>
+                </fieldset>
+                <fieldset id="puzzle-options" hidden>
+                  <legend>Puzzle length</legend>
+                  <div class="choice-group three-choices">
+                    <label class="choice">
+                      <input type="radio" name="puzzle-length" value="2" checked />
+                      <span>Win in 2<small>Easy</small></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="puzzle-length" value="3" />
+                      <span>Win in 3<small>Medium</small></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="puzzle-length" value="4" />
+                      <span>Win in 4<small>Hard</small></span>
+                    </label>
+                  </div>
+                </fieldset>
+                <fieldset id="side-options">
+                  <legend>Play as</legend>
+                  <div class="choice-group three-choices">
+                    <label class="choice">
+                      <input type="radio" name="side" value="w" checked />
+                      <span>White</span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="side" value="b" />
+                      <span>Black</span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="side" value="random" />
+                      <span>Random</span>
+                    </label>
+                  </div>
+                </fieldset>
+                <fieldset id="difficulty-options">
+                  <legend>Difficulty</legend>
+                  <div class="choice-group">
+                    <label class="choice">
+                      <input type="radio" name="difficulty" value="easy" />
+                      <span>Easy<small>Moves at random</small></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="difficulty" value="normal" checked />
+                      <span>Normal<small>Sees its move and your reply</small></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="difficulty" value="hard" />
+                      <span>Hard<small>Looks 2 full moves ahead</small></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="difficulty" value="expert" />
+                      <span>Expert<small>Thinks up to 10 seconds</small></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="difficulty" value="ai" />
+                      <span>AI<small>Trained on strong players' games</small></span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="difficulty" value="ai-plus" />
+                      <span>AI+<small>AI that checks for traps</small></span>
+                    </label>
+                  </div>
+                </fieldset>
+                <fieldset id="hint-who-options" hidden>
+                  <legend>Who gets AI hints</legend>
+                  <div class="choice-group">
+                    <label class="choice">
+                      <input type="radio" name="hint-who" value="nobody" checked />
+                      <span>Nobody</span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="hint-who" value="me" />
+                      <span>Only me</span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="hint-who" value="opponent" />
+                      <span>Only my opponent</span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="hint-who" value="both" />
+                      <span>Both of us</span>
+                    </label>
+                  </div>
+                </fieldset>
+                <fieldset id="hint-count-options">
+                  <legend>AI hints</legend>
+                  <div class="choice-group three-choices">
+                    <label class="choice" id="hint-off-choice">
+                      <input type="radio" name="hint-count" value="0" checked />
+                      <span>Off</span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="hint-count" value="3" />
+                      <span>3 per game</span>
+                    </label>
+                    <label class="choice">
+                      <input type="radio" name="hint-count" value="unlimited" />
+                      <span>Unlimited</span>
+                    </label>
+                  </div>
+                </fieldset>
+                <p id="online-error" class="form-error" role="alert" hidden></p>
+                <button type="submit" id="start-button" class="primary-button">Start</button>
+                <div id="join-options" class="join-options" hidden>
+                  <label for="join-code">Have a code from a friend?</label>
+                  <div class="join-row">
+                    <input id="join-code" class="code-input" maxlength="7" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="K7QX2" />
+                    <button type="button" id="join-button" class="secondary-button">Join</button>
+                  </div>
                 </div>
-              </fieldset>
-              <fieldset id="side-options">
-                <legend>Play as</legend>
-                <div class="choice-group three-choices">
-                  <label class="choice">
-                    <input type="radio" name="side" value="w" checked />
-                    <span>White</span>
-                  </label>
-                  <label class="choice">
-                    <input type="radio" name="side" value="b" />
-                    <span>Black</span>
-                  </label>
-                  <label class="choice">
-                    <input type="radio" name="side" value="random" />
-                    <span>Random</span>
-                  </label>
-                </div>
-              </fieldset>
-              <fieldset id="difficulty-options">
-                <legend>Difficulty</legend>
-                <div class="choice-group">
-                  <label class="choice">
-                    <input type="radio" name="difficulty" value="easy" />
-                    <span>Easy<small>Moves at random</small></span>
-                  </label>
-                  <label class="choice">
-                    <input type="radio" name="difficulty" value="normal" checked />
-                    <span>Normal<small>Sees its move and your reply</small></span>
-                  </label>
-                  <label class="choice">
-                    <input type="radio" name="difficulty" value="hard" />
-                    <span>Hard<small>Looks 2 full moves ahead</small></span>
-                  </label>
-                  <label class="choice">
-                    <input type="radio" name="difficulty" value="expert" />
-                    <span>Expert<small>Thinks up to 10 seconds</small></span>
-                  </label>
-                  <label class="choice">
-                    <input type="radio" name="difficulty" value="ai" />
-                    <span>AI<small>Trained on strong players' games</small></span>
-                  </label>
-                  <label class="choice">
-                    <input type="radio" name="difficulty" value="ai-plus" />
-                    <span>AI+<small>AI that checks for traps</small></span>
-                  </label>
-                </div>
-              </fieldset>
-              <fieldset id="hint-who-options" hidden>
-                <legend>Who gets AI hints</legend>
-                <div class="choice-group">
-                  <label class="choice">
-                    <input type="radio" name="hint-who" value="nobody" checked />
-                    <span>Nobody</span>
-                  </label>
-                  <label class="choice">
-                    <input type="radio" name="hint-who" value="me" />
-                    <span>Only me</span>
-                  </label>
-                  <label class="choice">
-                    <input type="radio" name="hint-who" value="opponent" />
-                    <span>Only my opponent</span>
-                  </label>
-                  <label class="choice">
-                    <input type="radio" name="hint-who" value="both" />
-                    <span>Both of us</span>
-                  </label>
-                </div>
-              </fieldset>
-              <fieldset id="hint-count-options">
-                <legend>AI hints</legend>
-                <div class="choice-group three-choices">
-                  <label class="choice" id="hint-off-choice">
-                    <input type="radio" name="hint-count" value="0" checked />
-                    <span>Off</span>
-                  </label>
-                  <label class="choice">
-                    <input type="radio" name="hint-count" value="3" />
-                    <span>3 per game</span>
-                  </label>
-                  <label class="choice">
-                    <input type="radio" name="hint-count" value="unlimited" />
-                    <span>Unlimited</span>
-                  </label>
-                </div>
-              </fieldset>
-              <p id="online-error" class="form-error" role="alert" hidden></p>
-              <button type="submit" id="start-button" class="primary-button">Start</button>
-              <div id="join-options" class="join-options" hidden>
-                <label for="join-code">Have a code from a friend?</label>
+                <button type="button" id="setup-cancel" class="text-button" hidden>Back to current game</button>
+                <button type="button" class="text-button show-tutorial">How to play</button>
+                <button type="button" class="text-button show-stats">Your stats</button>
+              </form>
+            </div>
+            <div id="waiting" class="overlay" hidden>
+              <div class="card waiting-card">
+                <h2>Waiting for your friend</h2>
+                <p>Send them this link to join:</p>
                 <div class="join-row">
-                  <input id="join-code" class="code-input" maxlength="7" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="K7QX2" />
-                  <button type="button" id="join-button" class="secondary-button">Join</button>
+                  <input id="share-link" class="share-link" readonly aria-label="Link to this game" />
+                  <button id="copy-link" class="primary-button">Copy</button>
+                </div>
+                <p>Or they can choose <strong>Online</strong> and enter the code <strong id="share-code" class="game-code"></strong></p>
+                <button id="cancel-online" class="text-button">Cancel</button>
+              </div>
+            </div>
+            <div id="opponent-left" class="overlay" hidden>
+              <div class="card">
+                <h2>Your opponent left</h2>
+                <p>They closed the game or lost connection. Waiting for them to come back…</p>
+                <button id="claim-win" class="primary-button">End game and claim the win</button>
+              </div>
+            </div>
+            <div id="resign-confirm" class="overlay" hidden>
+              <div class="card">
+                <h2 id="resign-question">Resign?</h2>
+                <p id="resign-consequence"></p>
+                <div class="dialog-actions">
+                  <button id="resign-yes" class="primary-button">Yes, resign</button>
+                  <button id="resign-no" class="secondary-button">Keep playing</button>
                 </div>
               </div>
-              <button type="button" id="setup-cancel" class="text-button" hidden>Back to current game</button>
-              <button type="button" class="text-button show-rules">How to play</button>
-            </form>
-          </div>
-          <div id="waiting" class="overlay" hidden>
-            <div class="card waiting-card">
-              <h2>Waiting for your friend</h2>
-              <p>Send them this link to join:</p>
-              <div class="join-row">
-                <input id="share-link" class="share-link" readonly aria-label="Link to this game" />
-                <button id="copy-link" class="primary-button">Copy</button>
-              </div>
-              <p>Or they can choose <strong>Online</strong> and enter the code <strong id="share-code" class="game-code"></strong></p>
-              <button id="cancel-online" class="text-button">Cancel</button>
             </div>
-          </div>
-          <div id="opponent-left" class="overlay" hidden>
-            <div class="card">
-              <h2>Your opponent left</h2>
-              <p>They closed the game or lost connection. Waiting for them to come back…</p>
-              <button id="claim-win" class="primary-button">End game and claim the win</button>
-            </div>
-          </div>
-          <div id="resign-confirm" class="overlay" hidden>
-            <div class="card">
-              <h2 id="resign-question">Resign?</h2>
-              <p id="resign-consequence"></p>
-              <div class="dialog-actions">
-                <button id="resign-yes" class="primary-button">Yes, resign</button>
-                <button id="resign-no" class="secondary-button">Keep playing</button>
+            <div id="result" class="overlay" hidden>
+              <div class="card">
+                <h2 id="result-title" class="result-title"></h2>
+                <p id="result-detail"></p>
+                <div id="rematch" class="rematch" hidden>
+                  <p id="rematch-message"></p>
+                  <div id="rematch-actions" class="dialog-actions"></div>
+                </div>
+                <div class="dialog-actions">
+                  <button id="review-game" class="secondary-button">Review game</button>
+                  <button id="play-again" class="primary-button">Play again</button>
+                </div>
               </div>
             </div>
           </div>
-          <div id="result" class="overlay" hidden>
-            <div class="card">
-              <h2 id="result-title" class="result-title"></h2>
-              <p id="result-detail"></p>
-              <div id="rematch" class="rematch" hidden>
-                <p id="rematch-message"></p>
-                <div id="rematch-actions" class="dialog-actions"></div>
-              </div>
-              <div class="dialog-actions">
-                <button id="review-game" class="secondary-button">Review game</button>
-                <button id="play-again" class="primary-button">Play again</button>
-              </div>
-            </div>
-          </div>
+          <p id="player-bottom" class="player-bar" hidden></p>
         </div>
         <section class="move-log" aria-labelledby="move-log-title">
           <h2 id="move-log-title">Moves</h2>
           <p id="move-log-empty" class="move-log-empty">No moves yet.</p>
           <ol id="move-list" class="move-list"></ol>
+          <div class="board-themes" role="radiogroup" aria-labelledby="board-themes-label">
+            <span id="board-themes-label">Board</span>
+            <button class="board-theme theme-brown" role="radio" data-theme="brown" aria-label="Brown board" title="Brown"></button>
+            <button class="board-theme theme-green" role="radio" data-theme="green" aria-label="Green board" title="Green"></button>
+            <button class="board-theme theme-blue" role="radio" data-theme="blue" aria-label="Blue board" title="Blue"></button>
+            <button class="board-theme theme-grey" role="radio" data-theme="grey" aria-label="Grey board" title="Grey"></button>
+          </div>
         </section>
       </div>
       <div id="review-bar" class="review-bar" hidden>
@@ -219,9 +259,35 @@
         <button id="new-game" class="primary-button">New game</button>
         <button id="hint-button" class="secondary-button" hidden>Hint</button>
         <button class="secondary-button show-rules">Rules</button>
+        <button class="secondary-button show-stats">Stats</button>
+        <button id="sound-toggle" class="secondary-button" aria-pressed="false" aria-label="Mute sounds">🔊</button>
         <button id="resign" class="secondary-button" hidden>Resign</button>
       </div>
     </main>
+    <div id="stats" class="modal" role="dialog" aria-modal="true" aria-labelledby="stats-title" hidden>
+      <div class="card stats-card">
+        <h2 id="stats-title">Your stats</h2>
+        <p class="stats-note">Saved in this browser only.</p>
+        <table class="stats-table">
+          <thead>
+            <tr>
+              <th scope="col">Against</th>
+              <th scope="col">Won</th>
+              <th scope="col">Lost</th>
+              <th scope="col">Drawn</th>
+            </tr>
+          </thead>
+          <tbody id="stats-rows"></tbody>
+        </table>
+        <h3>Recent games</h3>
+        <p id="recent-empty" class="stats-note">No finished games yet. Play one and it will show up here.</p>
+        <ol id="recent-games" class="recent-games"></ol>
+        <div class="dialog-actions">
+          <button id="clear-history" class="text-button">Clear history</button>
+          <button id="stats-close" class="primary-button">Close</button>
+        </div>
+      </div>
+    </div>
     <div id="rules" class="modal" role="dialog" aria-modal="true" aria-labelledby="rules-title" hidden>
       <div class="card rules-card">
         <h2 id="rules-title">How to play Antichess</h2>
@@ -233,7 +299,50 @@
         </ol>
         <p class="rules-tip"><strong>Tip:</strong> give your pieces away by moving them where your opponent will be forced to take them.</p>
         <p class="rules-draws">A game is drawn after 50 moves each with no capture or pawn move, when the same position comes up 3 times, or when only bishops are left that can never meet.</p>
-        <button id="rules-close" class="primary-button">Got it</button>
+        <div class="dialog-actions">
+          <button id="rules-tutorial" class="secondary-button">Practice lessons</button>
+          <button id="rules-close" class="primary-button">Got it</button>
+        </div>
+      </div>
+    </div>
+    <div id="tutorial" class="modal tutorial-modal" role="dialog" aria-modal="true" aria-label="How to play" hidden>
+      <div class="card tutorial-card">
+        <button id="tutorial-close" class="tutorial-close" aria-label="Close">×</button>
+        <section id="tutorial-start" class="tutorial-start">
+          <h2>How to play Antichess</h2>
+          <p>Antichess is chess turned upside down: you win by losing all your pieces. These short lessons let you try each rule yourself on a practice board.</p>
+          <div class="tutorial-start-choices">
+            <button id="tutorial-from-start" class="primary-button">I'm new to chess<small>Start with how each piece moves</small></button>
+            <button id="tutorial-rules-chapter" class="secondary-button">I already know chess<small>Go straight to what's different</small></button>
+          </div>
+          <button id="tutorial-rules-only" class="text-button">Just show me the rules</button>
+        </section>
+        <section id="tutorial-lesson" hidden>
+          <p id="tutorial-progress" class="tutorial-progress"></p>
+          <h2 id="tutorial-title"></h2>
+          <p id="tutorial-text" class="tutorial-text"></p>
+          <div id="tutorial-board" class="board tutorial-board" aria-label="Practice board"></div>
+          <div id="tutorial-promotion" class="tutorial-promotion" hidden>
+            <p>Promote your pawn to:</p>
+            <div id="tutorial-promotion-choices" class="promotion-choices"></div>
+          </div>
+          <p id="tutorial-feedback" class="tutorial-feedback" role="status"></p>
+          <div class="dialog-actions tutorial-actions">
+            <button id="tutorial-back" class="secondary-button">Back</button>
+            <button id="tutorial-retry" class="secondary-button">Start over</button>
+            <button id="tutorial-next" class="secondary-button">Skip</button>
+          </div>
+        </section>
+        <section id="tutorial-finish" class="tutorial-finish" hidden>
+          <h2>You're ready to play!</h2>
+          <p>You've seen how every piece moves and every Antichess rule. The two to keep in mind: if you can capture, you must, and you win by running out of pieces or moves.</p>
+          <p class="rules-draws">Games can also end in a draw. The rules summary explains when.</p>
+          <div class="dialog-actions">
+            <button id="tutorial-summary" class="secondary-button">Rules summary</button>
+            <button id="tutorial-play" class="primary-button">Play a game</button>
+          </div>
+          <button id="tutorial-restart" class="text-button">Back to the lessons</button>
+        </section>
       </div>
     </div>
   </body>
