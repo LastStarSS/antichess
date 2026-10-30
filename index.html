@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Antichess</title>
-    <script type="module" crossorigin src="/antichess/assets/index-CyxTZK8t.js"></script>
-    <link rel="stylesheet" crossorigin href="/antichess/assets/index-D8CSux5C.css">
+    <script type="module" crossorigin src="/antichess/assets/index-zNxzrlSX.js"></script>
+    <link rel="stylesheet" crossorigin href="/antichess/assets/index-9pg2I3T-.css">
   </head>
   <body>
     <main class="app">
@@ -260,7 +260,16 @@
         <button id="hint-button" class="secondary-button" hidden>Hint</button>
         <button class="secondary-button show-rules">Rules</button>
         <button class="secondary-button show-stats">Stats</button>
-        <button id="sound-toggle" class="secondary-button" aria-pressed="false" aria-label="Mute sounds">🔊</button>
+        <button id="sound-toggle" class="secondary-button sound-toggle" aria-pressed="false" aria-label="Mute sounds">
+          <svg class="sound-icon sound-on-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9h4l5-4v14l-5-4H4z" />
+            <path d="M16.5 9.5a3.5 3.5 0 0 1 0 5M19 7a7 7 0 0 1 0 10" />
+          </svg>
+          <svg class="sound-icon sound-off-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9h4l5-4v14l-5-4H4z" />
+            <path d="M17 9.5l5 5M22 9.5l-5 5" />
+          </svg>
+        </button>
         <button id="resign" class="secondary-button" hidden>Resign</button>
       </div>
     </main>
@@ -306,7 +315,7 @@
       </div>
     </div>
     <div id="tutorial" class="modal tutorial-modal" role="dialog" aria-modal="true" aria-label="How to play" hidden>
-      <div class="card tutorial-card">
+      <div id="tutorial-card" class="card tutorial-card">
         <button id="tutorial-close" class="tutorial-close" aria-label="Close">×</button>
         <section id="tutorial-start" class="tutorial-start">
           <h2>How to play Antichess</h2>
