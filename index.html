@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Antichess</title>
-    <script type="module" crossorigin src="/antichess/assets/index-zNxzrlSX.js"></script>
-    <link rel="stylesheet" crossorigin href="/antichess/assets/index-9pg2I3T-.css">
+    <script type="module" crossorigin src="/antichess/assets/index-DWRo7b50.js"></script>
+    <link rel="stylesheet" crossorigin href="/antichess/assets/index-DqMGNsK1.css">
   </head>
   <body>
     <main class="app">
@@ -13,6 +13,7 @@
       <p class="tagline">Lose all your pieces to win. If you can capture, you must.</p>
       <p id="game-info" class="game-info"></p>
       <p id="status" class="status" role="status"></p>
+      <p id="turn-indicator" class="turn-indicator inactive">White's turn</p>
       <div class="game-area">
         <div class="board-column">
           <p id="player-top" class="player-bar" hidden></p>
@@ -175,9 +176,11 @@
                     <button type="button" id="join-button" class="secondary-button">Join</button>
                   </div>
                 </div>
+                <div class="dialog-actions">
+                  <button type="button" class="secondary-button show-tutorial">How to play</button>
+                  <button type="button" class="secondary-button show-stats">Your stats</button>
+                </div>
                 <button type="button" id="setup-cancel" class="text-button" hidden>Back to current game</button>
-                <button type="button" class="text-button show-tutorial">How to play</button>
-                <button type="button" class="text-button show-stats">Your stats</button>
               </form>
             </div>
             <div id="waiting" class="overlay" hidden>
